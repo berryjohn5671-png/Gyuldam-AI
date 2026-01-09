@@ -33,8 +33,7 @@ print(API_KEY)
 # 방법 2: weather_config.py 파일에 직접 입력
 # weather_config.py 파일을 열어서 API 키 입력
 
-import os
-from weather_config import SHORT_TERM_API_KEY, MID_TERM_API_KEY
+
 
 # 환경변수 우선, 없으면 config 파일 사용
 os.environ['KMA_SHORT_API_KEY'] = os.getenv('KMA_SHORT_API_KEY', SHORT_TERM_API_KEY)
