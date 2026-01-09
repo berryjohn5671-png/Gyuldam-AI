@@ -8,11 +8,12 @@
 
 # 1. 단기예보 API 키 (VilageFcstInfoService)
 # https://www.data.go.kr/data/15084084/openapi.do
-SHORT_TERM_API_KEY = "334bf3bdbd19cdcdb0d4363e2bd1030eb40c1f148e798d9493e0a10c27e8b286"
+
+import os
+WEATHER_API_KEY = os.getenv("KMA_API_KEY")
 
 # 2. 중기예보 API 키 (MidFcstInfoService)  
 # https://www.data.go.kr/data/15059468/openapi.do
-MID_TERM_API_KEY = "334bf3bdbd19cdcdb0d4363e2bd1030eb40c1f148e798d9493e0a10c27e8b286"
 
 # ============================================
 # 중기예보 지역 코드
@@ -96,3 +97,5 @@ DEFAULT_MID_FORECAST = "184"
 DEFAULT_MID_LAND = "11G00000"
 DEFAULT_MID_TEMP = "11G00201"
 DEFAULT_SHORT_COORDS = {"nx": 52, "ny": 38}
+
+print(WEATHER_API_KEY)

@@ -10,12 +10,13 @@ Korea Meteorological Administration Weather API Integration
 import requests
 from datetime import datetime, timedelta
 from functools import lru_cache
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 # 지역 코드 설정 import
 from weather_config import (
-    SHORT_TERM_API_KEY,
-    MID_TERM_API_KEY,
+    WEATHER_API_KEY,
     MID_FORECAST_REGIONS,
     MID_LAND_REGIONS,
     MID_TEMP_REGIONS,
@@ -28,8 +29,9 @@ from weather_config import (
 )
 
 # API 키 (환경변수 우선, 없으면 config 파일 사용)
-SHORT_API_KEY = "334bf3bdbd19cdcdb0d4363e2bd1030eb40c1f148e798d9493e0a10c27e8b286"
-MID_API_KEY = "334bf3bdbd19cdcdb0d4363e2bd1030eb40c1f148e798d9493e0a10c27e8b286"
+KMA_API_KEY = os.getenv("KMA_API_KEY")
+
+print(os.getenv("KMA_API_KEY"))
 
 # 기본 URL
 SHORT_TERM_BASE_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"
@@ -69,7 +71,7 @@ def get_current_weather(cache_key, region=DEFAULT_REGION):
         base_date = now.strftime("%Y%m%d")
         
         params = {
-            "serviceKey": SHORT_API_KEY,  # 단기예보 API 키 사용
+            "serviceKey": KMA_API_KEY,  # 단기예보 API 키 사용
             "numOfRows": 10,
             "pageNo": 1,
             "dataType": "JSON",
@@ -148,7 +150,7 @@ def get_ultra_short_forecast(cache_key, region=DEFAULT_REGION):
         base_date = now.strftime("%Y%m%d")
         
         params = {
-            "serviceKey": SHORT_API_KEY,  # 단기예보 API 키 사용
+            "serviceKey": KMA_API_KEY,  # 단기예보 API 키 사용
             "numOfRows": 60,
             "pageNo": 1,
             "dataType": "JSON",
@@ -227,7 +229,7 @@ def get_short_forecast(cache_key, region=DEFAULT_REGION):
                     base_date = now.strftime("%Y%m%d")
         
         params = {
-            "serviceKey": SHORT_API_KEY,  # 단기예보 API 키 사용
+            "serviceKey": KMA_API_KEY,  # 단기예보 API 키 사용
             "numOfRows": 100,
             "pageNo": 1,
             "dataType": "JSON",
@@ -307,7 +309,7 @@ def get_mid_forecast(cache_key, region=DEFAULT_REGION):
         tm_fc = f"{base_date}{base_time}"
         
         params = {
-            "serviceKey": MID_API_KEY,  # 중기예보 API 키 사용
+            "serviceKey": KMA_API_KEY,  # 중기예보 API 키 사용
             "numOfRows": 10,
             "pageNo": 1,
             "dataType": "JSON",
@@ -386,7 +388,7 @@ def get_mid_land_forecast(cache_key, region=DEFAULT_REGION):
         tm_fc = f"{base_date}{base_time}"
         
         params = {
-            "serviceKey": MID_API_KEY,  # 중기예보 API 키 사용
+            "serviceKey": KMA_API_KEY,  # 중기예보 API 키 사용
             "numOfRows": 10,
             "pageNo": 1,
             "dataType": "JSON",
@@ -477,8 +479,7 @@ def get_weather_for_context(region=DEFAULT_REGION):
 
 if __name__ == "__main__":
     print("=== 기상청 API 테스트 ===\n")
-    print(f"단기예보 API 키: {SHORT_API_KEY[:20]}...")
-    print(f"중기예보 API 키: {MID_API_KEY[:20]}...\n")
+    print(KMA_API_KEY)
     
     test_region = "제주"
     
@@ -522,7 +523,7 @@ def get_ultra_short_forecast(cache_key, region=DEFAULT_REGION):
         base_date = now.strftime("%Y%m%d")
         
         params = {
-            "serviceKey": SHORT_API_KEY,
+            "serviceKey": KMA_API_KEY,
             "numOfRows": 60,
             "pageNo": 1,
             "dataType": "JSON",
@@ -600,7 +601,7 @@ def get_short_forecast(cache_key, region=DEFAULT_REGION):
                     base_date = now.strftime("%Y%m%d")
         
         params = {
-            "serviceKey": SHORT_API_KEY,
+            "serviceKey": KMA_API_KEY,
             "numOfRows": 100,
             "pageNo": 1,
             "dataType": "JSON",
@@ -679,7 +680,7 @@ def get_mid_forecast(cache_key, region=DEFAULT_REGION):
         tm_fc = f"{base_date}{base_time}"
         
         params = {
-            "serviceKey": MID_API_KEY,
+            "serviceKey": KMA_API_KEY,
             "numOfRows": 10,
             "pageNo": 1,
             "dataType": "JSON",
@@ -757,7 +758,7 @@ def get_mid_land_forecast(cache_key, region=DEFAULT_REGION):
         tm_fc = f"{base_date}{base_time}"
         
         params = {
-            "serviceKey": MID_API_KEY,
+            "serviceKey": KMA_API_KEY,
             "numOfRows": 10,
             "pageNo": 1,
             "dataType": "JSON",

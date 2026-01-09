@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 # 기상청 API import
 from weather_api import (
@@ -16,7 +19,9 @@ CORS(app)
 
 MODEL_NAME = "google/gemma-3-27b-it:free"
 LINK = "https://openrouter.ai/api/v1/chat/completions"
-API_KEY = "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"
+API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+print(API_KEY)
 
 # 기상청 API 키 설정
 # 두 개의 다른 API이므로 각각 발급받아야 합니다!
@@ -321,4 +326,5 @@ if __name__ == "__main__":
     print("   3. app.py 파일의 KMA_API_KEY에 키 입력")
     print("\n서버 시작 중...\n")
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    ###app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run()
