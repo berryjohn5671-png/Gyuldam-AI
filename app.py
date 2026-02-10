@@ -17,7 +17,7 @@ from weather_api import (
 app = Flask(__name__)
 CORS(app)
 
-MODEL_NAME = "openrouter/free"
+MODEL_NAME = "google/gemma-3-27b-it:free"
 LINK = "https://openrouter.ai/api/v1/chat/completions"
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
