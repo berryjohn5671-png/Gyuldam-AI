@@ -17,7 +17,7 @@ from weather_api import (
 app = Flask(__name__)
 CORS(app)
 
-MODEL_NAME = "deepseek/deepseek-r1-0528:free"
+MODEL_NAME = "anthropic/claude-haiku-4.5"
 LINK = "https://openrouter.ai/api/v1/chat/completions"
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
